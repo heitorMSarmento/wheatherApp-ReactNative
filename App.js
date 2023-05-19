@@ -2,7 +2,7 @@ import React from "react";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import Tabs from "./src/components/Tabs";
-import { useGetWeather } from "./src/hooks/useGetWheather";
+import { useGetWeather } from "./src/hooks/useGetWeather";
 
 const App = () => {
   const [loading, error, weather] = useGetWeather();
@@ -31,4 +31,3 @@ const styles = StyleSheet.create({
 
 export default App;
 
-/// 2:44:20

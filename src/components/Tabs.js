@@ -29,7 +29,6 @@ const Tabs = ({ weather }) => {
     >
       <Tab.Screen
         name={"Atual"}
-        component={CurrentWeather}
         options={{
           tabBarIcon: ({ focused }) => (
             <Feather
@@ -39,10 +38,11 @@ const Tabs = ({ weather }) => {
             />
           ),
         }}
-      />
+      >
+        {() => <CurrentWeather weatherData={weather.list[0]} />}
+      </Tab.Screen>
       <Tab.Screen
         name={"Por Vir"}
-        component={UpComingWeather}
         options={{
           tabBarIcon: ({ focused }) => (
             <Feather
@@ -52,7 +52,9 @@ const Tabs = ({ weather }) => {
             />
           ),
         }}
-      />
+      >
+      {() => <UpComingWeather weatherData={weather.list} />}
+      </Tab.Screen>
       <Tab.Screen
         name={"Cidade"}
         component={City}
@@ -71,6 +73,5 @@ const Tabs = ({ weather }) => {
 };
 
 export default Tabs;
-
 
 // 4:06:00
