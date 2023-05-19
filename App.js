@@ -1,40 +1,33 @@
 import React from "react";
-import CurrentWeather from "./src/screens/CurrentWeather";
-import UpComingWeather from "./src/screens/UpcomingWeather";
-import City from "./src/screens/City";
+import { ActivityIndicator, StyleSheet, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Feather } from "@expo/vector-icons";
+import Tabs from "./src/components/Tabs";
+import { useGetWeather } from "./src/hooks/useGetWheather";
 
-const Tab = createBottomTabNavigator();
 const App = () => {
+  const [loading, error, weather] = useGetWeather();
+
+  if (weather && weather.list) {
+    return (
+      <NavigationContainer>
+        <Tabs weather={weather} />
+      </NavigationContainer>
+    );
+  }
+
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={{
-          tabBarActiveTintColor: "tomato",
-          tabBarInactiveTintColor: "grey",
-        }}
-      >
-        <Tab.Screen
-          name={"Atual"}
-          component={CurrentWeather}
-          options={{
-            tabBarIcon: ({ focused }) => (
-              <Feather
-                name={"droplet"}
-                size={25}
-                color={focused ? "tomato" : "black"}
-              />
-            ),
-          }}
-        />
-        <Tab.Screen name={"Amanhã"} component={UpComingWeather} />
-        <Tab.Screen name={"Cidade"} component={City} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <View style={styles.container}>
+      <ActivityIndicator size={"large"} color={"blue"} />
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: "center",
+    flex: 1,
+  },
+});
 
 export default App;
 
