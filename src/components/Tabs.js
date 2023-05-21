@@ -53,11 +53,10 @@ const Tabs = ({ weather }) => {
           ),
         }}
       >
-      {() => <UpComingWeather weatherData={weather.list} />}
+        {() => <UpComingWeather weatherData={weather.list} />}
       </Tab.Screen>
       <Tab.Screen
         name={"Cidade"}
-        component={City}
         options={{
           tabBarIcon: ({ focused }) => (
             <Feather
@@ -67,11 +66,11 @@ const Tabs = ({ weather }) => {
             />
           ),
         }}
-      />
+      >
+        {() => <City  weatherData={weather.city} />}
+      </Tab.Screen>
     </Tab.Navigator>
   );
 };
 
 export default Tabs;
-
-// 4:06:00
